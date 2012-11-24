@@ -1,0 +1,4 @@
+F:\vs_Projects\WcfApp\WcfApp\bin\WcfApp.dll
+F:\vs_Projects\WcfApp\WcfApp\bin\WcfApp.pdb
+F:\vs_Projects\WcfApp\WcfApp\obj\Debug\WcfApp.dll
+F:\vs_Projects\WcfApp\WcfApp\obj\Debug\WcfApp.pdb
