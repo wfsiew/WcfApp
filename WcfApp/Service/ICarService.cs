@@ -13,6 +13,9 @@ namespace WcfApp.Service
     public interface ICarService
     {
         [OperationContract]
+        void insertCar(CarRecord r);
+
+        [OperationContract]
         List<CarRecord> GetCars(int page, int pageSize);
     }
 

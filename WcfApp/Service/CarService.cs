@@ -12,6 +12,21 @@ namespace WcfApp.Service
     {
         private const string ConnectionStr = "server=0222f8b2-6308-478d-ae87-a11200cef3be.mysql.sequelizer.com;database=db0222f8b26308478dae87a11200cef3be;uid=lycddawsjcjbpvvs;pwd=hyjz8wRVMfGqnrxvR3EfbiWjDaXkA72Lh26fuLrfpsCbALFfQbtQuTR8J857FFtP";
 
+        public void insertCar(CarRecord r)
+        {
+            DbLayer db = new DbLayer();
+            db.OpenConnection(ConnectionStr);
+            db.InsertCar(new Car {
+                Make = r.Make,
+                Model = r.Model,
+                Year = r.Year,
+                Doors = r.Doors,
+                Colour = r.Colours,
+                Price = r.Price
+            });
+            db.CloseConnection();
+        }
+
         public List<CarRecord> GetCars(int page, int pageSize)
         {
             DbLayer db = new DbLayer();

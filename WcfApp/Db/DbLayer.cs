@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Text;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using WcfApp;
@@ -24,6 +25,42 @@ namespace WcfApp.Db
         public void CloseConnection()
         {
             Connection.Close();
+        }
+
+        public void InsertCar(Car o)
+        {
+            StringBuilder sb = new StringBuilder("insert into Car (Make, Model, Year, Doors, Colour, Price) values ")
+            .Append("(@make, @model, @year, @doors, @colour, @price)");
+            string q = sb.ToString();
+
+            using (MySqlCommand cm = new MySqlCommand(q, Connection))
+            {
+                MySqlParameter p = new MySqlParameter("@make", MySqlDbType.String);
+                p.Value = o.Make;
+                cm.Parameters.Add(p);
+
+                p = new MySqlParameter("@model", MySqlDbType.String);
+                p.Value = o.Model;
+                cm.Parameters.Add(p);
+
+                p = new MySqlParameter("@year", MySqlDbType.Int32);
+                p.Value = o.Year;
+                cm.Parameters.Add(p);
+
+                p = new MySqlParameter("@doors", MySqlDbType.Int32);
+                p.Value = o.Doors;
+                cm.Parameters.Add(p);
+
+                p = new MySqlParameter("@colour", MySqlDbType.String);
+                p.Value = o.Colour;
+                cm.Parameters.Add(p);
+
+                p = new MySqlParameter("@price", MySqlDbType.Double);
+                p.Value = o.Price;
+                cm.Parameters.Add(p);
+
+                cm.ExecuteNonQuery();
+            }
         }
 
         public DataTable GetCars(int page, int pageSize)
